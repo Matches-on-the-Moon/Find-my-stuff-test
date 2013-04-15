@@ -39,27 +39,27 @@ public class ItemManagerTest extends AndroidTestCase
 	}
 	public void testGetMatches() throws Exception{
 		
-		Integer myItem = im.createItem(0, "testItem", "Atlanta", "", Item.Type.Lost, "keepsake", "");
+		Integer myItem = im.createItem(0, "testItem", "Atlanta", "", Item.Type.LOST, "keepsake", "");
 		
 		Integer [] matches = {
-				im.createItem(0, "test", "Atlanta", "", Item.Type.Found, "keepsake", ""),
-				im.createItem(0, "testItem", "Atlanta", "", Item.Type.Found, "heirloom", ""),
-				im.createItem(0, "Item", "Atlanta", "", Item.Type.Found, "misc", ""),
-				im.createItem(0, "TESTITEM", "Atlanta", "", Item.Type.Found, "misc", "")
+				im.createItem(0, "test", "Atlanta", "", Item.Type.FOUND, "keepsake", ""),
+				im.createItem(0, "testItem", "Atlanta", "", Item.Type.FOUND, "heirloom", ""),
+				im.createItem(0, "Item", "Atlanta", "", Item.Type.FOUND, "misc", ""),
+				im.createItem(0, "TESTITEM", "Atlanta", "", Item.Type.FOUND, "misc", "")
 		};
 		
 		Integer [] nonMatches = {
 				
-				im.createItem(0, "itemTest", "Athens", "", Item.Type.Found, "keepsake", ""),
-				im.createItem(0, "testItem", "Athens", "", Item.Type.Found, "keepsake", ""),
-				im.createItem(0, "itemTest", "Atlanta", "", Item.Type.Found, "keepsake", ""),
-				im.createItem(0, "test", "Atlanta", "", Item.Type.Lost, "keepsake", ""),
-				im.createItem(0, "test", "Atlanta", "", Item.Type.Lost, "keepsake", ""),
-				im.createItem(0, "Item", "Atlanta", "", Item.Type.Lost, "keepsake", ""),
+				im.createItem(0, "itemTest", "Athens", "", Item.Type.FOUND, "keepsake", ""),
+				im.createItem(0, "testItem", "Athens", "", Item.Type.FOUND, "keepsake", ""),
+				im.createItem(0, "itemTest", "Atlanta", "", Item.Type.FOUND, "keepsake", ""),
+				im.createItem(0, "test", "Atlanta", "", Item.Type.LOST, "keepsake", ""),
+				im.createItem(0, "test", "Atlanta", "", Item.Type.LOST, "keepsake", ""),
+				im.createItem(0, "Item", "Atlanta", "", Item.Type.LOST, "keepsake", ""),
 		};
 		
 		
-		ArrayList<Item> imMatches = im.getMatches(im.getItem(myItem));
+		ArrayList<Item> imMatches = (ArrayList<Item>)im.getMatches(im.getItem(myItem));
 		
 		for( Integer match: matches ){
 			Item item = im.getItem(match);
@@ -76,12 +76,12 @@ public class ItemManagerTest extends AndroidTestCase
 		for( Integer nonMatch: nonMatches )
 			im.deleteItem(nonMatch);
 		
-		imMatches = im.getMatches(im.getItem(myItem));
+		imMatches = (ArrayList<Item>)im.getMatches(im.getItem(myItem));
 		assertTrue( imMatches == null );
 		
 		im.deleteItem(myItem);
 		
-		imMatches = im.getMatches(im.getItem(myItem));
+		imMatches = (ArrayList<Item>)im.getMatches(im.getItem(myItem));
 		assertTrue( imMatches == null );
 		
 		/*

@@ -41,7 +41,7 @@ public class AccountTest extends AndroidTestCase
 	
 	public void testAccountGetName()
 	{
-		Account account = new Account(1, "", "", "", "", Account.State.Unlocked, 0);
+		Account account = new Account(1, "", "", "", "", Account.State.UNLOCKED, 0);
 		
 		// make sure it's what I set it to
 		String name = account.getName();
@@ -50,7 +50,7 @@ public class AccountTest extends AndroidTestCase
 
 	public void testAccountSetName()
 	{
-		Account account = new Account(1, "", "", "", "", Account.State.Unlocked, 0);
+		Account account = new Account(1, "", "", "", "", Account.State.UNLOCKED, 0);
 		
 		// make sure it's what I set it to
 		boolean result = account.setName("new name");
