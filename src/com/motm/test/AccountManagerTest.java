@@ -40,6 +40,17 @@ public class AccountManagerTest extends AndroidTestCase
 	// Each test must start with the word test...
 	//
 	
+	public void testIsLoginNameUnique()
+	{
+		boolean result;
+		
+		result = accountManager.isLoginNameUnique("");
+		assertTrue(result);
+		
+		result = accountManager.isLoginNameUnique("loginName");
+		assertTrue(result);
+	}
+	
 	// simple, not full
 	public void testAccountCreate()
 	{
