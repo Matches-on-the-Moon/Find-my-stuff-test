@@ -39,6 +39,18 @@ public class ItemTest extends AndroidTestCase {
 		int itemID = item.getItemID();
 		assertEquals(1, itemID);
 	}
+        
+        public void testSetItemID()
+	{
+		Item item = new Item(1, 1, "", "", Item.Status.Open, "", Item.Type.Lost, "", "", new GregorianCalendar());
+		
+		// make sure it's what I set it to
+		item.setOwnerID(2);
+		int itemID = item.getItemID();
+		assertEquals(2, itemID);
+		
+	}
+
 
 	
 }
