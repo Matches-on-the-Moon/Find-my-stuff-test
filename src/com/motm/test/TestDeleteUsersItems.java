@@ -1,7 +1,6 @@
 package com.motm.test;
 
 
-import java.util.GregorianCalendar;
 import com.motm.models.Account;
 import com.motm.models.FileAccountManager;
 import com.motm.models.FileItemManager;
@@ -16,7 +15,6 @@ import junit.framework.TestCase;
 
 public class TestDeleteUsersItems extends TestCase {
 	private ItemManager itemManager;
-	private Account account;
 	private AccountManager accountManager;
 
 	@Override
@@ -26,7 +24,6 @@ public class TestDeleteUsersItems extends TestCase {
 		
 		// ran before each test
 		accountManager = new FileAccountManager();
-		account = new Account(1, "", "", "", "", Account.State.UNLOCKED, 0);
 		itemManager = new FileItemManager();
 	}
 
@@ -37,7 +34,6 @@ public class TestDeleteUsersItems extends TestCase {
 		
 		// ran after each test
 		accountManager = null;
-		account = null;
 		itemManager = null;
 	}
 
@@ -92,7 +88,7 @@ public class TestDeleteUsersItems extends TestCase {
 	/*
 	 *  Test if deleteUsersItems(int ownerId) works correctly if the user has no items.
 	 */
-	public void testDeleteUsersNonexistantItems()
+	public void testDeleteUsersNonexistentItems()
 	{
 		Integer itemId = 0;
 		// creates item not owned by account
@@ -103,6 +99,9 @@ public class TestDeleteUsersItems extends TestCase {
 		}	
 		// gets the size of the list of all items before deleting.
 		int itemListSize1 = itemManager.getAllItems().size();
+		if (itemListSize1 == 0) {
+			assertTrue(false);
+		}
 		// delete the account's items.
 		itemManager.deleteUsersItems(1);
 		// size of the list after deleting the users items.
@@ -114,17 +113,19 @@ public class TestDeleteUsersItems extends TestCase {
 	/*
 	 *  Test if deleteUsersItems(int ownerId) works correctly if the user doesn't exist.
 	 */
-	public void testDeleteNonExistantUsersItems()
+	public void testDeleteNonexistentUsersItems()
 	{
-		Integer itemId = 0;
 		// creates item not owned by account
 		try {
-			itemId = itemManager.createItem(2, "testName","testLocation", "testReward", Item.Type.FOUND, "testCategory", "testDescription");
+			itemManager.createItem(2, "testName","testLocation", "testReward", Item.Type.FOUND, "testCategory", "testDescription");
 		} catch(Exception e) {
 			assertTrue(false);
 		}	
 		// gets the size of the list of all items before deleting.
 		int itemListSize1 = itemManager.getAllItems().size();
+		if (itemListSize1 == 0) {
+			assertTrue(false);
+		}
 		// delete the original account.
 		accountManager.deleteAccount(1);
 		// delete the account's items.
