@@ -33,7 +33,7 @@ public class ItemTest extends AndroidTestCase {
 	
 	public void testGetItemID()
 	{
-		Item item = new Item(1, 1, "", "", Item.Status.Open, "", Item.Type.Lost, "", "", new GregorianCalendar());
+		Item item = new Item(1, 1, "", "", Item.Status.OPEN, "", Item.Type.LOST, "", "", new GregorianCalendar());
 		
 		// make sure it's what I set it to
 		int itemID = item.getItemID();
@@ -42,7 +42,7 @@ public class ItemTest extends AndroidTestCase {
         
         public void testSetItemID()
 	{
-		Item item = new Item(1, 1, "", "", Item.Status.Open, "", Item.Type.Lost, "", "", new GregorianCalendar());
+		Item item = new Item(1, 1, "", "", Item.Status.OPEN, "", Item.Type.LOST, "", "", new GregorianCalendar());
 		
 		// make sure it's what I set it to
 		item.setOwnerID(2);
